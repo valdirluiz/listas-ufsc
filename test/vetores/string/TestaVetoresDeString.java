@@ -109,4 +109,46 @@ public class TestaVetoresDeString {
 		assertEquals(2, util.retornaNumerosVogaisEConsoantesDeVetor(texto)[1]);
 	}
 	
+	@Test
+	public void deveInverterVetor(){
+		char [] vetor = new char[3];
+		vetor[0]='a';
+		vetor[1]='b';
+		vetor[2]='c';
+		
+		VetoresUtil util = new VetoresUtil();
+		
+		vetor = util.inverteVetor(vetor);
+		
+		
+		char[] vetorEsperado = new char[3];
+		vetorEsperado[0]='c';
+		vetorEsperado[1]='b';
+		vetorEsperado[2]='a';
+		assertEquals(true, util.isVectorEquals(vetorEsperado, vetor));
+	}
+	
+	@Test
+	public void palavraRirDeveSerPalindroma(){
+		char[] texto = new char[3];
+		texto[0]='r';
+		texto[1]='i';
+		texto[2]='r';
+		
+		VetoresUtil util = new VetoresUtil();
+		
+		assertEquals(true, util.isVectorPalindromo(texto));
+	}
+	
+	@Test
+	public void palavraOiNaoDeveSerPalindroma(){
+		char[] texto = new char[2];
+		texto[0]='o';
+		texto[1]='i';
+		
+		VetoresUtil util = new VetoresUtil();
+		
+		assertEquals(false, util.isVectorPalindromo(texto));
+	}
+	
 }

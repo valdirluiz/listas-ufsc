@@ -63,5 +63,21 @@ public class VetoresUtil {
 		armazena[2] = numeroDeVogais;
 		return armazena;
 	}
+	
+	public char[] inverteVetor(char[] vetor){
+		char [] vetorInvertido = new char[vetor.length];
+		int indice=0;
+		for (int i = vetor.length-1; i >= 0; i--) {
+			vetorInvertido[indice] = vetor[i];
+			indice++;
+		}
+		return vetorInvertido;
+	}
+	
+	public Boolean isVectorPalindromo(char[] vector){
+		char [] vetorOriginal = vector;
+		vector = this.inverteVetor(vector);
+		return this.isVectorEquals(vetorOriginal, vector);
+	}
 
 }
