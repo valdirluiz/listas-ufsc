@@ -74,10 +74,23 @@ public class VetoresUtil {
 		return vetorInvertido;
 	}
 	
-	public Boolean isVectorPalindromo(char[] vector){
-		char [] vetorOriginal = vector;
-		vector = this.inverteVetor(vector);
-		return this.isVectorEquals(vetorOriginal, vector);
-	}
+   	public boolean isPalindroma(char[] palavra){
+	        int indiceFinal = palavra.length-1;
+	        int indiceInicial = 0;
+	        boolean isPalindroma=true;
+		do{
+            
+            		if(palavra[indiceFinal]!=palavra[indiceFinal]){
+                		isPalindroma=false;
+                		break;
+            		}
+            
+            		indiceFinal=indiceFinal-1;
+            		indiceInicial=indiceInicial+1;
+        	} while(indiceFinal!=indiceInicial);
+        
+        return isPalindroma;
+        
+    }
 
 }
