@@ -92,5 +92,57 @@ public class VetoresUtil {
         return isPalindroma;
         
     }
+    
+    //exercicios matrizes
+    
+    public int somatoriaDosElementosDaMatriz(int[][] matriz) {
+		int somatoria = 0;
+		for (int linha = 0; linha < matriz.length; linha++) {
+			for (int coluna = 0; coluna < matriz[linha].length; coluna++) {
+				somatoria = somatoria + matriz[linha][coluna];
+			}
+		}
+		return somatoria;
+	}
+
+	public void imprimeMatriz(int[][] matriz) {
+		for (int linha = 0; linha < matriz.length; linha++) {
+			for (int coluna = 0; coluna < matriz[linha].length; coluna++) {
+				System.out.print(matriz[linha][coluna]+ " ");
+			}
+			System.out.println();
+		}
+	}
+	
+	public void imprimeDiagonalPrincipal(int [][] matriz){
+		int indice=0;
+		do{
+			System.out.print(matriz[indice][indice]);
+			indice=indice+1;
+		} while(indice<matriz.length);
+	}
+	
+	public void imprimeDiagonalSegundaria(int [][] matriz){
+		int linha=0;
+		int coluna=matriz.length-1;
+		do{
+			System.out.print(matriz[linha][coluna]);
+			coluna=coluna-1;
+			linha=linha+1;
+		} while(linha<matriz.length);
+	}
+
+	public int[][] matrizMultiplicadaPorDez(int[][] matriz) {
+		for (int linha = 0; linha < matriz.length; linha++) {
+			for (int coluna = 0; coluna < matriz[linha].length; coluna++) {
+				if (linha == coluna) {
+					matriz[linha][coluna]=0;
+				} else{
+					matriz[linha][coluna]=matriz[linha][coluna]*10;
+				}
+			}
+		}
+		return matriz;
+	}
 
 }
