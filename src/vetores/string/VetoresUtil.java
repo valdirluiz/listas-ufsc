@@ -63,39 +63,39 @@ public class VetoresUtil {
 		armazena[2] = numeroDeVogais;
 		return armazena;
 	}
-	
-	public char[] inverteVetor(char[] vetor){
-		char [] vetorInvertido = new char[vetor.length];
-		int indice=0;
-		for (int i = vetor.length-1; i >= 0; i--) {
+
+	public char[] inverteVetor(char[] vetor) {
+		char[] vetorInvertido = new char[vetor.length];
+		int indice = 0;
+		for (int i = vetor.length - 1; i >= 0; i--) {
 			vetorInvertido[indice] = vetor[i];
 			indice++;
 		}
 		return vetorInvertido;
 	}
-	
-   	public boolean isPalindroma(char[] palavra){
-	        int indiceFinal = palavra.length-1;
-	        int indiceInicial = 0;
-	        boolean isPalindroma=true;
-		do{
-            
-            		if(palavra[indiceFinal]!=palavra[indiceFinal]){
-                		isPalindroma=false;
-                		break;
-            		}
-            
-            		indiceFinal=indiceFinal-1;
-            		indiceInicial=indiceInicial+1;
-        	} while(indiceFinal!=indiceInicial);
-        
-        return isPalindroma;
-        
-    }
-    
-    //exercicios matrizes
-    
-    public int somatoriaDosElementosDaMatriz(int[][] matriz) {
+
+	public boolean isPalindroma(char[] palavra) {
+		int indiceFinal = palavra.length - 1;
+		int indiceInicial = 0;
+		boolean isPalindroma = true;
+		do {
+
+			if (palavra[indiceFinal] != palavra[indiceFinal]) {
+				isPalindroma = false;
+				break;
+			}
+
+			indiceFinal = indiceFinal - 1;
+			indiceInicial = indiceInicial + 1;
+		} while (indiceFinal != indiceInicial);
+
+		return isPalindroma;
+
+	}
+
+	// exercicios matrizes
+
+	public int somatoriaDosElementosDaMatriz(int[][] matriz) {
 		int somatoria = 0;
 		for (int linha = 0; linha < matriz.length; linha++) {
 			for (int coluna = 0; coluna < matriz[linha].length; coluna++) {
@@ -108,41 +108,114 @@ public class VetoresUtil {
 	public void imprimeMatriz(int[][] matriz) {
 		for (int linha = 0; linha < matriz.length; linha++) {
 			for (int coluna = 0; coluna < matriz[linha].length; coluna++) {
-				System.out.print(matriz[linha][coluna]+ " ");
+				System.out.print(matriz[linha][coluna] + " ");
 			}
 			System.out.println();
 		}
 	}
-	
-	public void imprimeDiagonalPrincipal(int [][] matriz){
-		int indice=0;
-		do{
+
+	public void imprimeDiagonalPrincipal(int[][] matriz) {
+		int indice = 0;
+		do {
 			System.out.print(matriz[indice][indice]);
-			indice=indice+1;
-		} while(indice<matriz.length);
+			indice = indice + 1;
+		} while (indice < matriz.length);
 	}
-	
-	public void imprimeDiagonalSegundaria(int [][] matriz){
-		int linha=0;
-		int coluna=matriz.length-1;
-		do{
+
+	public void imprimeDiagonalSegundaria(int[][] matriz) {
+		int linha = 0;
+		int coluna = matriz.length - 1;
+		do {
 			System.out.print(matriz[linha][coluna]);
-			coluna=coluna-1;
-			linha=linha+1;
-		} while(linha<matriz.length);
+			coluna = coluna - 1;
+			linha = linha + 1;
+		} while (linha < matriz.length);
 	}
 
 	public int[][] matrizMultiplicadaPorDez(int[][] matriz) {
 		for (int linha = 0; linha < matriz.length; linha++) {
 			for (int coluna = 0; coluna < matriz[linha].length; coluna++) {
 				if (linha == coluna) {
-					matriz[linha][coluna]=0;
-				} else{
-					matriz[linha][coluna]=matriz[linha][coluna]*10;
+					matriz[linha][coluna] = 0;
+				} else {
+					matriz[linha][coluna] = matriz[linha][coluna] * 10;
 				}
 			}
 		}
 		return matriz;
+	}
+
+	public void mostraOcorrenciaDeNumeros(int[] vetor) {
+		int ocorrencias[][] = new int[2][vetor.length];
+		String resultado = "";
+		for (int indice = 0; indice < vetor.length; indice++) {
+			adicionaOcorrencia(vetor[indice], ocorrencias, indice);
+		}
+
+		for (int coluna = 0; coluna < ocorrencias[1].length; coluna++) {
+			if (ocorrencias[1][coluna] != 0) {
+				resultado += "N. " + ocorrencias[0][coluna] + " -> "
+						+ ocorrencias[1][coluna] + " vezes | ";
+			}
+		}
+
+		System.out.print(resultado);
+
+	}
+
+	public void adicionaOcorrencia(int numero, int ocorrencias[][],
+			int lugarNoVetor) {
+		boolean encontrou = false;
+		for (int coluna = 0; coluna < ocorrencias.length; coluna++) {
+			if (ocorrencias[0][coluna] == numero) {
+				ocorrencias[1][coluna] = ocorrencias[1][coluna] + 1;
+				encontrou = true;
+				break;
+			}
+
+		}
+
+		if (!encontrou) {
+			ocorrencias[0][lugarNoVetor] = numero;
+			ocorrencias[1][lugarNoVetor] = ocorrencias[1][lugarNoVetor] + 1;
+		}
+
+	}
+	
+	public int digitosDoNumero(int numero){
+		int digitos=0;
+		do {
+			numero=numero/10;
+			digitos=digitos+1;
+		} while (numero>0);
+		return digitos;
+	}
+	
+	public String montaEspacos(int numero, int maxDigitos){
+		String espacos=" ";
+		int qtEspacos = maxDigitos-this.digitosDoNumero(numero);
+		for(int i=0; i<=qtEspacos;i++){
+			espacos=espacos+" ";
+		}
+		return espacos;
+	}
+	
+	public void imprimeTabela(int numero){
+		int matriz[][] = new int[numero][numero];
+		
+		for(int linha=0; linha<matriz.length;linha++){
+			for(int coluna=0;coluna<matriz[linha].length;coluna++){
+				int numeroAtual = (linha+1)*(coluna+1);
+				System.out.print(this.montaEspacos(numeroAtual, 2)+numeroAtual);
+			}
+			System.out.println();
+		}
+	}
+	
+	public static void main(String[] args) {
+		int vetor[] = {1,2,3,1,1};
+		VetoresUtil vetoresUtil = new VetoresUtil();
+		 vetoresUtil.imprimeTabela(8);
 	}
 
 }
